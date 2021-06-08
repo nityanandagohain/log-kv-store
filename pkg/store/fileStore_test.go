@@ -23,7 +23,12 @@ func TestWrite(t *testing.T) {
 
 func BenchmarkWrite(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		err := testStore.Put(utils.RandomKey(), utils.RandomValue())
+		key := utils.RandomKey()
+		val := utils.RandomValue()
+		err := testStore.Put(key, val)
 		require.NoError(b, err)
+		storedVal, err := testStore.Get(key)
+		require.NoError(b, err)
+		require.Equal(b, val, storedVal)
 	}
 }
