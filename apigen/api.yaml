@@ -1,0 +1,95 @@
+components:
+  parameters:
+    idParam:
+      in: path
+      name: id
+      required: true
+      schema:
+        description: entity id
+        pattern: ^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$
+        type: string
+  schemas:
+    AddKeyVal:
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      required:
+      - key
+      - value
+      type: object
+    error:
+      properties:
+        error:
+          type: string
+        info:
+          type: string
+      required:
+      - message
+      title: Error Response
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
+info:
+  contact:
+    email: nityanandagohain@gmail.com
+    name: Log KV store
+    url: https://nityanandagohain.in
+  description: ""
+  license:
+    name: MIT
+    url: ""
+  termsOfService: ""
+  title: log-kv-store
+  version: 0.0.1
+openapi: 3.0.0
+paths:
+  /v1/cache:
+    post:
+      description: add a key value pair
+      operationId: AddKeyValue
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddKeyVal'
+        description: Add a key value pair
+        required: true
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+      security: []
+      tags:
+      - cache
+  /v1/cache/{key}:
+    get:
+      description: add a key value pair
+      operationId: getKey
+      parameters:
+      - in: path
+        name: key
+        required: true
+        schema:
+          type: string
+      requestBody: {}
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: object
+      security: []
+      tags:
+      - cache
+schemes: []
+security:
+- bearerAuth: []
+servers:
+- description: The production API server
+  url: http://localhost:3000/

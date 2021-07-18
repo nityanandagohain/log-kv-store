@@ -91,15 +91,14 @@ func (f *FileStore) Put(key, val string) error {
 	// storing the offset
 	f.index[key] = offset
 
-	err = binary.Write(f.writeFile, binary.LittleEndian, LenData{
+	if err = binary.Write(f.writeFile, binary.LittleEndian, LenData{
 		Lkey: int32(len(key)),
 		LVal: int32(len(val)),
-	})
-
-	if _, err := f.writeFile.Write([]byte(fmt.Sprintf("%s%s", key, val))); err != nil {
+	}); err != nil {
 		return err
 	}
-	if err != nil {
+
+	if _, err := f.writeFile.Write([]byte(fmt.Sprintf("%s%s", key, val))); err != nil {
 		return err
 	}
 

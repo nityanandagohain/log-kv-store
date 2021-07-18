@@ -9,3 +9,8 @@ A high performant log structured key value store in golang.
 - [ ] File rotation with max size of 1GB
 - [ ] Delete Support
 - [ ] Algorithm for merging immutable files
+
+
+
+## Generate API spec
+* `make apigen`

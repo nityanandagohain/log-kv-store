@@ -1,0 +1,82 @@
+{
+  "paths": {
+    "/v1/cache": {
+      "post": {
+        "tags": [
+          "cache"
+        ],
+        "description": "add a key value pair",
+        "operationId": "AddKeyValue",
+        "parameters": [],
+        "security": [],
+        "requestBody": {
+          "description": "Add a key value pair",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddKeyVal"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "/v1/cache/{key}":{
+      "get": {
+        "tags": [
+          "cache"
+        ],
+        "description": "add a key value pair",
+        "operationId": "getKey",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "key",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [],
+        "requestBody": {},
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AddKeyVal": {
+        "type": "object",
+        "required": [
+          "key",
+          "value"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

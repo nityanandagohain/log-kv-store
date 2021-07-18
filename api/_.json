@@ -1,0 +1,68 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "version": "0.0.1",
+      "title": "log-kv-store",
+      "description": "",
+      "termsOfService": "",
+      "contact": {
+        "name": "Log KV store",
+        "email": "nityanandagohain@gmail.com",
+        "url": "https://nityanandagohain.in"
+      },
+      "license": {
+        "name": "MIT",
+        "url": ""
+      }
+    },
+    "schemes": [],
+    "servers": [
+      {
+        "url": "http://localhost:3000/",
+        "description": "The production API server"
+      }
+    ],
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ],
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      },
+      "schemas": {
+        "error": {
+          "type": "object",
+          "title": "Error Response",
+          "required": [
+            "message"
+          ],
+          "properties": {
+            "info": {
+              "type": "string"
+            },
+            "error": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "parameters": {
+        "idParam": {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+            "description": "entity id"
+          }
+        }
+      }
+    }
+  }

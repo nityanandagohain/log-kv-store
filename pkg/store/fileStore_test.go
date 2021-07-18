@@ -13,8 +13,6 @@ func TestWrite(t *testing.T) {
 	err := testStore.Put(key, val)
 	require.NoError(t, err)
 
-	//
-
 	storedVal, err := testStore.Get(key)
 	require.NoError(t, err)
 	require.Equal(t, val, storedVal)
